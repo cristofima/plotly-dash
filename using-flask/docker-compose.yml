@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  flask_plotly_dash_demo:
+    image: ${DOCKER_REGISTRY-}flask-plotly-dash-demo
+    build:
+      context: .
+      dockerfile: Dockerfile

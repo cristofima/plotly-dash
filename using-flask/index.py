@@ -3,6 +3,8 @@ from app import app
 from dash import html
 from layouts import layout1, layout2
 
+server = app.server
+
 app.layout = html.Div(children=[
     html.H1(children='Dash using Flask'),
 
@@ -12,7 +14,7 @@ app.layout = html.Div(children=[
 ])
 
 
-@app.server.route("/dash/<int:appId>/")
+@server.route("/dash/<int:appId>/")
 def dash_apps(appId: int):
     if appId == 1:
         app.layout = layout1.layout
@@ -22,8 +24,3 @@ def dash_apps(appId: int):
         app.layout = None
 
     return app.index()
-
-
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5001))
-    app.server.run(host="0.0.0.0", port=port, debug=True)
